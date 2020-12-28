@@ -7,7 +7,8 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  # パスワードが空のままでも更新できるようにする
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   # 渡された文字列のハッシュ値を返す
   # ハッシュ化されたパスワードを返す
   # リメンバー機能を使うために使用
