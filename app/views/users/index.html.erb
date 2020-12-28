@@ -1,0 +1,14 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+
+
+  <!--Railsは自動的に_user.html.erbという名前のパーシャルを探しにいく-->
+<ul class="users">
+  <%= render @users %>
+</ul>
+   
+
+<%= will_paginate %>
