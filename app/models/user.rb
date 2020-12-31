@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   # DB保存前に実行
   before_save   :downcase_email
@@ -84,6 +85,11 @@ class User < ApplicationRecord
   # ログアウトボタンを押したときに発動
   def forget
     update_attribute(:remember_digest, nil)
+  end
+  # 試作feedの定義
+  # 完全な実装は次章の「ユーザーをフォローする」を参照
+  def feed
+    Micropost.where("user_id = ?", id)
   end
   
   private
